@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1520"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "774AF34B2DAE225700902AD3"
+               BuildableName = "MovieMenu.app"
+               BlueprintName = "MovieMenu"
+               ReferencedContainer = "container:MovieMenu.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "774AF35B2DAE225A00902AD3"
+               BuildableName = "MovieMenuTests.xctest"
+               BlueprintName = "MovieMenuTests"
+               ReferencedContainer = "container:MovieMenu.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "774AF3652DAE225A00902AD3"
+               BuildableName = "MovieMenuUITests.xctest"
+               BlueprintName = "MovieMenuUITests"
+               ReferencedContainer = "container:MovieMenu.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "774AF34B2DAE225700902AD3"
+            BuildableName = "MovieMenu.app"
+            BlueprintName = "MovieMenu"
+            ReferencedContainer = "container:MovieMenu.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "API_KEY"
+            value = "8989b8d73bf5f35201c5550942efed13&#10;//  MovieService.swift&#10;//  &#10;//&#10;//  Created by Jeremiah Herring on 4/14/25.&#10;//&#10;&#10;import Foundation&#10;&#10;struct Movie: Decodable, Identifiable {&#10;    let id = UUID()&#10;    let title: String&#10;    let overview: String&#10;    let poster_path: String&#10;&#10;    enum CodingKeys: String, CodingKey {&#10;        case title&#10;        case overview&#10;        case poster_path&#10;    }&#10;}&#10;&#10;struct MovieResponse: Decodable {&#10;    let results: [Movie]&#10;}&#10;&#10;class MovieService {&#10;    private let apiKey = &quot;8989b8d73bf5f35201c5550942efed13&quot;&#10;    private let baseURL = &quot;https://api.themoviedb.org/3&quot;&#10;&#10;    func fetchPopularMovies(completion: @escaping ([Movie]) -&gt; Void) {&#10;        let urlString = &quot;\(baseURL)/movie/popular?api_key=\(apiKey)&amp;language=en-US&amp;page=1&quot;&#10;        guard let url = URL(string: urlString) else {&#10;            completion([])&#10;            return&#10;        }&#10;&#10;        URLSession.shared.dataTask(with: url) { data, response, error in&#10;            guard let data = data, error == nil else {&#10;                print(&quot;Network error: \(error?.localizedDescription ?? &quot;unknown&quot;)&quot;)&#10;                completion([])&#10;                return&#10;            }&#10;&#10;            do {&#10;                let response = try JSONDecoder().decode(MovieResponse.self, from: data)&#10;                completion(response.results)&#10;            } catch {&#10;                print(&quot;Decoding error: \(error)&quot;)&#10;                completion([])&#10;            }&#10;        }.resume()&#10;    }&#10;}&#10;&#10;8989b8d73bf5f35201c5550942efed13"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "774AF34B2DAE225700902AD3"
+            BuildableName = "MovieMenu.app"
+            BlueprintName = "MovieMenu"
+            ReferencedContainer = "container:MovieMenu.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
