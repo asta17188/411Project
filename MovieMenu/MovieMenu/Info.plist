@@ -6,5 +6,9 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Sora-VariableFont_wght.ttf</string>
+	</array>
 </dict>
 </plist>

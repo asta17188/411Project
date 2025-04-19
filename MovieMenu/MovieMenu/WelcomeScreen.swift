@@ -12,18 +12,33 @@ struct WelcomeScreen: View {
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
-        ZStack {
-            Color(Color.deepBlack).ignoresSafeArea()
-            VStack {
-                
+        NavigationStack {
+            ZStack {
+                AppBackground()
+                VStack {
+                    Text("MovieMenu")
+                        .font(Font.custom("Sora-Regular_Bold", size: 50))
+                        .foregroundColor(Color.lightPink)
+                    Image("film")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: ScreenSize.width * 0.16)
+                        .padding(20)
+                    
+                    NavigationLink(destination: SignIn()) {
+                        WelcomeScreenButton(text: "Sign in")
+                    }
+                    
+                    NavigationLink(destination: CreateAccount()) {
+                        WelcomeScreenButton(text: "Create account")
+                    }
+                }
             }
-            
         }
-        
-        
     }
 }
 
 #Preview {
     WelcomeScreen()
+    
 }
