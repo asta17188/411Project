@@ -25,13 +25,14 @@ struct WelcomeScreen: View {
                         .frame(width: ScreenSize.width * 0.16)
                         .padding(20)
                     
-                    NavigationLink(destination: SignIn()) {
+                    NavigationLink(destination: AuthView(initialIsLogin: true)) {
                         WelcomeScreenButton(text: "Sign in")
                     }
-                    
-                    NavigationLink(destination: CreateAccount()) {
+
+                    NavigationLink(destination: AuthView(initialIsLogin: false)) {
                         WelcomeScreenButton(text: "Create account")
                     }
+
                 }
             }
         }
@@ -40,5 +41,4 @@ struct WelcomeScreen: View {
 
 #Preview {
     WelcomeScreen()
-    
 }
