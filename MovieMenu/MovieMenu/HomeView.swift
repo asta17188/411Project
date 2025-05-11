@@ -15,7 +15,7 @@ struct HomeView: View {
         TabView {
             SearchView()
                 .tabItem {
-                    Label("Movies", systemImage: "magnifyingglass")
+                    Label("Movies", systemImage: "film")
                 }
 
             AnimeListView()
@@ -26,6 +26,10 @@ struct HomeView: View {
             UserProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person")
+                }
+            FriendsListView()
+                .tabItem {
+                    Label("Friends", systemImage: "person.2")
                 }
         }
     }

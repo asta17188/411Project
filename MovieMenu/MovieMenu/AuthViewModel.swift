@@ -1,12 +1,6 @@
-//
-//  AuthViewModel.swift
-//  MovieMenu
-//
-//  Created by Jeremiah Herring on 4/15/25.
-//
-
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 class AuthViewModel: ObservableObject {
     @Published var user: User?
@@ -18,8 +12,19 @@ class AuthViewModel: ObservableObject {
     func signUp(email: String, password: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             DispatchQueue.main.async {
-                self.user = result?.user
-                completion(error)
+                if let user = result?.user {
+                    self.user = user
+
+                    let db = Firestore.firestore()
+                    db.collection("users").document(user.uid).setData([
+                        "email": email,
+                        "createdAt": Timestamp(date: Date())
+                    ]) { firestoreError in
+                        completion(firestoreError ?? error)
+                    }
+                } else {
+                    completion(error)
+                }
             }
         }
     }

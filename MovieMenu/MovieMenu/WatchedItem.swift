@@ -16,10 +16,11 @@
 import Foundation
 
 struct WatchedItem: Identifiable {
-    let id = UUID()
+    let id: String
     let title: String
     let description: String
     let posterURL: String
     let notes: String
     let rating: Int
 }
+

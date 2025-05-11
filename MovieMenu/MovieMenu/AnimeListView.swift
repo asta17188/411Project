@@ -49,7 +49,7 @@ struct AnimeListView: View {
                                             Text(anime.synopsis ?? "No description available")
                                                 .font(.subheadline)
                                                 .lineLimit(3)
-                                                .foregroundColor(.gray)
+                                                .foregroundColor(.white)
                                         }
                                     }
                                     .padding(.horizontal)
@@ -65,6 +65,7 @@ struct AnimeListView: View {
                     }
                 }
                 .navigationTitle("Top Anime")
+                .foregroundColor(.white)
             }
         }
         .onAppear {

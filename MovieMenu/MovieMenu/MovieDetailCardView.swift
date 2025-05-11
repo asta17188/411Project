@@ -14,7 +14,7 @@ struct MovieDetailCardView: View {
     @State private var notes = ""
     @State private var rating = 5
     private let firestore = FirestoreService()
-
+    
     var body: some View {
         ZStack(alignment: .top) {
             AppBackground()
@@ -31,30 +31,30 @@ struct MovieDetailCardView: View {
                         ProgressView()
                     }
                 }
-
+                
                 Text(movie.title)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .padding(.top, 20)
-
+                
                 Text(movie.overview)
                     .foregroundColor(.white)
                     .padding(.top, 10)
-
+                
                 TextEditor(text: $notes)
                     .frame(height: 100)
                     .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray))
-
+                
                 Text("⭐️ Rating: \(rating)/10")
                     .foregroundColor(.white)
-
+                
                 Slider(value: Binding(get: {
                     Double(rating)
                 }, set: {
                     rating = Int($0)
                 }), in: 0...10, step: 1)
-
+                
                 Button("Add to Watched") {
                     firestore.addMovieToWatched(movie, notes: notes, rating: rating) { error in
                         message = error == nil ? "🎉 Added!" : error?.localizedDescription
@@ -64,12 +64,16 @@ struct MovieDetailCardView: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(10)
-
-                if let message = message {
-                    Text(message).foregroundColor(.green)
+                .padding(.bottom, 80)
+                .safeAreaInset(edge: .bottom) {
+                    Color.clear.frame(height: 80)
+                    
+                    if let message = message {
+                        Text(message).foregroundColor(.green)
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
     }
 }

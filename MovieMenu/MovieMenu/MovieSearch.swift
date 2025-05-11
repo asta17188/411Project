@@ -48,6 +48,7 @@ struct SearchView: View {
                     Text(searchText.isEmpty ? "🔥 Popular Movies" : "🔍 Results for \"\(searchText)\"")
                         .font(.headline)
                         .padding(.horizontal)
+                        .foregroundColor(.white)
 
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {

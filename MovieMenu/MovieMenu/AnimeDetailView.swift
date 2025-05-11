@@ -48,7 +48,7 @@ struct AnimeDetailView: View {
                         get: { Double(rating) },
                         set: { rating = Int($0) }
                     ), in: 0...10, step: 1)
-
+                    
                     Button("Add to Watched") {
                         firestore.addAnimeToWatched(anime, notes: notes, rating: rating) { error in
                             if let error = error {
@@ -62,6 +62,10 @@ struct AnimeDetailView: View {
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .padding(.bottom, 80)
+                    .safeAreaInset(edge: .bottom) { 
+                        Color.clear.frame(height: 80)
+                    }
 
                     if let message = message {
                         Text(message)
