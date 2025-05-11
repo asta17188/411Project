@@ -38,9 +38,8 @@ struct UserProfileView: View {
                                 ForEach(watchedMovies) { movie in
                                     WatchedItemView(item: movie, onDelete: {
                                         deleteMovie(movie)
-                                    })
+                                    }, showDeleteButton: true)
                                 }
-
                                 Divider().background(Color.white)
 
                                 Text("Watched Anime")
@@ -50,7 +49,7 @@ struct UserProfileView: View {
                                 ForEach(watchedAnime) { anime in
                                     WatchedItemView(item: anime, onDelete: {
                                         deleteAnime(anime)
-                                    })
+                                    }, showDeleteButton: true)
                                 }
                             }
 
@@ -292,6 +291,7 @@ struct UserProfileView: View {
 struct WatchedItemView: View {
     let item: WatchedItem
     let onDelete: () -> Void
+    let showDeleteButton: Bool
 
     var body: some View {
         HStack(alignment: .top) {
@@ -329,14 +329,17 @@ struct WatchedItemView: View {
                         .foregroundColor(.orange)
                 }
 
-                Button(role: .destructive) {
-                    onDelete()
-                } label: {
-                    Text("🗑 Delete")
-                        .font(.footnote)
-                        .foregroundColor(.red)
+                // Show delete button conditionally
+                if showDeleteButton {
+                    Button(role: .destructive) {
+                        onDelete()
+                    } label: {
+                        Text("🗑 Delete")
+                            .font(.footnote)
+                            .foregroundColor(.red)
+                    }
+                    .padding(.top, 4)
                 }
-                .padding(.top, 4)
             }
         }
         .padding(.vertical, 8)

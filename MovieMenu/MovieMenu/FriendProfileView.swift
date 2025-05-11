@@ -19,8 +19,9 @@ struct FriendProfileView: View {
                     Text("No movies watched.")
                         .foregroundColor(.gray)
                 } else {
-                    ForEach(watchedMovies) { item in
-                        WatchedItemView(item: item, onDelete: {})
+                    ForEach(watchedMovies) { movie in
+                        WatchedItemView(item: movie, onDelete: {
+                        }, showDeleteButton: false)
                     }
                 }
 
@@ -34,8 +35,9 @@ struct FriendProfileView: View {
                     Text("No anime watched.")
                         .foregroundColor(.gray)
                 } else {
-                    ForEach(watchedAnime) { item in
-                        WatchedItemView(item: item, onDelete: {})
+                    ForEach(watchedAnime) { anime in
+                        WatchedItemView(item: anime, onDelete: {
+                        }, showDeleteButton: false)
                     }
                 }
             }

@@ -18,7 +18,6 @@ struct FriendsListView: View {
     }
 
     private func loadFriends() {
-        guard let userID = auth.user?.uid else { return }
         firestore.fetchFriends { self.friends = $0 }
     }
 }
