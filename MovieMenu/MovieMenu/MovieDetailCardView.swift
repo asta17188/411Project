@@ -13,6 +13,7 @@ struct MovieDetailCardView: View {
     @State private var message: String?
     @State private var notes = ""
     @State private var rating = 5
+    @State private var showpopup = false
     private let firestore = FirestoreService()
     
     var body: some View {
@@ -58,6 +59,7 @@ struct MovieDetailCardView: View {
                 Button("Add to Watched") {
                     firestore.addMovieToWatched(movie, notes: notes, rating: rating) { error in
                         message = error == nil ? "🎉 Added!" : error?.localizedDescription
+                        showPopup()
                     }
                 }
                 .padding()
@@ -73,7 +75,30 @@ struct MovieDetailCardView: View {
                     }
                 }
                 .padding()
+                if(showpopup) {
+                    Text("Movie Added!")
+                            .padding()
+                            .background(Color.black.opacity(0.8))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .transition(.opacity)
+                            .zIndex(1)
+                }
+                
             }
         }
+        .animation(.easeInOut, value: showpopup)
     }
+    
+    func showPopup() {
+        showpopup = true
+
+        // Hide after 2 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            showpopup = false
+        }
+    }
+    
+    
 }
+
