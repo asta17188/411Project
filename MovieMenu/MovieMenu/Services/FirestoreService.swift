@@ -235,7 +235,6 @@ class FirestoreService {
                 let senderFriendRef = usersRef.document(senderUID).collection("friends").document(receiverUID)
                 batch.setData(receiverFriendData, forDocument: senderFriendRef)
 
-                // Optionally delete the friend request
                 self.db.collection("friend_requests")
                     .whereField("from", isEqualTo: senderUID)
                     .whereField("to", isEqualTo: receiverUID)
@@ -244,7 +243,6 @@ class FirestoreService {
                             batch.deleteDocument(doc.reference)
                         }
 
-                        // Commit batch
                         batch.commit(completion: completion)
                     }
             }
