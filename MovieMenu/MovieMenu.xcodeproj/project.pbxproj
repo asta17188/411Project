@@ -41,7 +41,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6DBD9FC92DADF5D300C5B145 /* Exceptions for "MovieMenu" folder in "MovieMenu" target */ = {
+		7A23EBD92DD523550043398B /* Exceptions for "MovieMenu" folder in "MovieMenu" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -54,7 +54,7 @@
 		6DBD9FA52DADF5D200C5B145 /* MovieMenu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				6DBD9FC92DADF5D300C5B145 /* Exceptions for "MovieMenu" folder in "MovieMenu" target */,
+				7A23EBD92DD523550043398B /* Exceptions for "MovieMenu" folder in "MovieMenu" target */,
 			);
 			path = MovieMenu;
 			sourceTree = "<group>";
